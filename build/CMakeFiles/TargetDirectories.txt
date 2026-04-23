@@ -1,0 +1,3 @@
+/home/todd/Documents/GitHub/shmuppi/build/CMakeFiles/shmuppi.dir
+/home/todd/Documents/GitHub/shmuppi/build/CMakeFiles/edit_cache.dir
+/home/todd/Documents/GitHub/shmuppi/build/CMakeFiles/rebuild_cache.dir
