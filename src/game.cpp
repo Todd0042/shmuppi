@@ -4,7 +4,10 @@
 #include <iostream>
 
 Game::Game(const GameConfig& cfg) : config(cfg) {
+    SetConfigFlags(FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_MAXIMIZED);
     InitWindow(config.width, config.height, config.title.c_str());
+
+
     SetTargetFPS(60);
 }
 

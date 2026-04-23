@@ -10,15 +10,13 @@ public:
     void render() const;
 
     Rectangle hitbox() const;
+    Vector2 getPos() const { return pos; }
+    float getHitboxRadius() const { return hitboxRadius; }
 
 private:
     Vector2 pos;
     Vector2 vel;
 
     float speed = 350.0f;
-    float hitboxRadius = 6.0f; // tiny power-core style hitbox
-
-    // future weapon state
-    // int weaponMode = 0;
-    // float fireCooldown = 0.0f;
+    float hitboxRadius = 6.0f;
 };

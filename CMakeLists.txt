@@ -11,6 +11,9 @@ find_package(raylib REQUIRED)
 add_executable(shmuppi
     src/main.cpp
     src/game.cpp
+    src/entities/player.cpp 
+    src/entities/enemy.cpp  
+    src/entities/bullet.cpp
     src/states/state_main_menu.cpp
     src/states/state_level_select.cpp
     src/states/state_play.cpp

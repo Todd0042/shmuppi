@@ -1,14 +1,11 @@
 # ninja log v7
-1	293	1776915328735204138	CMakeFiles/shmuppi.dir/src/states/state_pause.cpp.o	76e31f348912753a
-1	319	1776915328734960291	CMakeFiles/shmuppi.dir/src/states/state_play.cpp.o	4abd0e5a130d0499
-0	341	1776915328733199988	CMakeFiles/shmuppi.dir/src/main.cpp.o	3eb000b48e7c8fc8
-1	368	1776915328734747821	CMakeFiles/shmuppi.dir/src/states/state_level_select.cpp.o	ad68ffa8c2cc8afd
-0	404	1776915328734378002	CMakeFiles/shmuppi.dir/src/game.cpp.o	7dcfd8549fbbc6f
-1	409	1776915328734533923	CMakeFiles/shmuppi.dir/src/states/state_main_menu.cpp.o	70cc8ca95532f71d
-409	455	1776915329142700097	shmuppi	e918d44776197c0a
-1	270	1776915594593181520	CMakeFiles/shmuppi.dir/src/states/state_main_menu.cpp.o	70cc8ca95532f71d
-1	302	1776915594593308455	CMakeFiles/shmuppi.dir/src/states/state_level_select.cpp.o	ad68ffa8c2cc8afd
-1	306	1776915594592965953	CMakeFiles/shmuppi.dir/src/game.cpp.o	7dcfd8549fbbc6f
-1	310	1776915594593431966	CMakeFiles/shmuppi.dir/src/states/state_play.cpp.o	4abd0e5a130d0499
-2	339	1776915594593607727	CMakeFiles/shmuppi.dir/src/states/state_pause.cpp.o	76e31f348912753a
-1	388	1776915594592338763	CMakeFiles/shmuppi.dir/src/main.cpp.o	3eb000b48e7c8fc8
+2	22	1776919135098188877	CMakeFiles/shmuppi.dir/src/entities/bullet.cpp.o	8f3dc3d84b75465f
+2	113	1776919135098072083	CMakeFiles/shmuppi.dir/src/entities/enemy.cpp.o	a25634fb4d3e3ccb
+2	181	1776919135097980503	CMakeFiles/shmuppi.dir/src/entities/player.cpp.o	9b1ab3c431e25ad7
+2	287	1776919135098441864	CMakeFiles/shmuppi.dir/src/states/state_level_select.cpp.o	ad68ffa8c2cc8afd
+2	309	1776919135098303251	CMakeFiles/shmuppi.dir/src/states/state_main_menu.cpp.o	70cc8ca95532f71d
+3	369	1776919135098677648	CMakeFiles/shmuppi.dir/src/states/state_pause.cpp.o	76e31f348912753a
+3	374	1776919135098570337	CMakeFiles/shmuppi.dir/src/states/state_play.cpp.o	4abd0e5a130d0499
+1	376	1776919135096029343	CMakeFiles/shmuppi.dir/src/main.cpp.o	3eb000b48e7c8fc8
+2	383	1776919135097029352	CMakeFiles/shmuppi.dir/src/game.cpp.o	7dcfd8549fbbc6f
+383	436	1776919135478032617	shmuppi	62830ed8c6a0a60a

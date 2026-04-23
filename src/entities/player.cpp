@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include <cmath>
 #include <algorithm>
 
 Player::Player(float x, float y) {
@@ -32,17 +33,43 @@ void Player::update(float dt) {
 }
 
 void Player::render() const {
-    // draw tiny core hitbox
-    DrawCircleV(pos, hitboxRadius, YELLOW);
+    // --- Temporary ship body (wide rectangle) ---
+    const float shipWidth  = 48.0f;
+    const float shipHeight = 20.0f;
 
-    // optional: draw a larger visible ship placeholder
-    DrawTriangle(
-        {pos.x, pos.y - 12},
-        {pos.x - 10, pos.y + 12},
-        {pos.x + 10, pos.y + 12},
-        RAYWHITE
-    );
+    Rectangle shipRect{
+        pos.x - shipWidth * 0.5f,
+        pos.y - shipHeight * 0.5f,
+        shipWidth,
+        shipHeight
+    };
+
+    DrawRectangleRounded(shipRect, 0.3f, 6, Color{200, 200, 200, 255});
+    DrawRectangleRoundedLines(shipRect, 0.3f, 6, Color{80, 80, 80, 255});
+
+    // --- Power core (actual hitbox) ---
+    // --- Power core glow layers ---
+    float t = GetTime();
+
+    // Pulse between 1.0 and 1.25
+    float pulse = 1.0f + 0.25f * sinf(t * 6.0f);
+
+    // Outer halo
+    DrawCircleV(pos, hitboxRadius * 4.0f * pulse,
+                Color{0, 150, 255, 40});
+
+    // Mid halo
+    DrawCircleV(pos, hitboxRadius * 2.5f * pulse,
+                Color{0, 150, 255, 90});
+
+    // Inner bright core (actual hitbox)
+    DrawCircleV(pos, hitboxRadius,
+                Color{0, 180, 255, 255});
+
 }
+
+
+
 
 Rectangle Player::hitbox() const {
     return { pos.x - hitboxRadius, pos.y - hitboxRadius,

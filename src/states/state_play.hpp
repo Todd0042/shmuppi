@@ -1,6 +1,10 @@
 #pragma once
 #include "state.hpp"
 #include "../entities/player.hpp"
+#include "../entities/enemy.hpp"
+#include <vector>
+#include "../entities/bullet.hpp"
+
 
 class StatePlay : public GameState {
 public:
@@ -15,4 +19,11 @@ private:
     int lives;
 
     Player player;
+
+    std::vector<Enemy> enemies;
+    float enemySpawnTimer = 0.0f;
+
+    std::vector<Bullet> bullets;
+    float fireCooldown = 0.0f;
+
 };

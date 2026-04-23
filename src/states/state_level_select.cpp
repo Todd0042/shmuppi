@@ -22,7 +22,9 @@ void StateLevelSelect::handleInput(Game& game) {
     }
 }
 
-void StateLevelSelect::update(Game&, float) {}
+void StateLevelSelect::update(Game&, float) {
+    // nothing needed here yet
+}
 
 void StateLevelSelect::render(Game&) {
     DrawText("LEVEL / LIVES SELECT", 360, 150, 30, RAYWHITE);

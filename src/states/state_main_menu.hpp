@@ -1,5 +1,6 @@
 #pragma once
 #include "state.hpp"
+#include "../entities/bullet.hpp"
 
 class StateMainMenu : public GameState {
 public:
