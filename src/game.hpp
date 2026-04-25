@@ -11,7 +11,6 @@ struct GameConfig {
     std::string title  = "shmuppi";
 };
 
-
 class GameState;
 
 class Game {
@@ -25,6 +24,8 @@ public:
 
     void pushState(std::unique_ptr<GameState> state);
     void popState();
+    void changeState(std::unique_ptr<GameState> state);
+
     GameState* currentState();
 
     bool isDebugWindowEnabled() const { return config.debug_window; }

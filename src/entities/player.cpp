@@ -5,6 +5,13 @@
 Player::Player(float x, float y) {
     pos = {x, y};
     vel = {0, 0};
+
+    sprite = LoadTexture("../assets/player/player_ship.png");
+    TraceLog(LOG_INFO, "SPRITE SIZE: %d x %d", sprite.width, sprite.height);
+}
+
+Player::~Player() {
+    UnloadTexture(sprite);
 }
 
 void Player::handleInput() {
@@ -30,48 +37,48 @@ void Player::update(float dt) {
     // clamp to screen
     pos.x = std::clamp(pos.x, 0.0f, (float)GetScreenWidth());
     pos.y = std::clamp(pos.y, 0.0f, (float)GetScreenHeight());
+
+    // Invincibility countdown
+    if (invulnTime > 0.0f) {
+        invulnTime -= dt;
+        if (invulnTime < 0.0f) invulnTime = 0.0f;
+    }
 }
 
 void Player::render() const {
-    // --- Temporary ship body (wide rectangle) ---
-    const float shipWidth  = 48.0f;
-    const float shipHeight = 20.0f;
+    // Flash during invulnerability
+    bool flash = isInvulnerable() && (fmod(GetTime() * 20.0f, 2.0f) < 1.0f);
+    Color tint = flash ? Color{255, 255, 255, 80} : WHITE;
 
-    Rectangle shipRect{
-        pos.x - shipWidth * 0.5f,
-        pos.y - shipHeight * 0.5f,
-        shipWidth,
-        shipHeight
-    };
+    // --- Draw ship sprite ---
+    float w = sprite.width * spriteScale;
+    float h = sprite.height * spriteScale;
 
-    DrawRectangleRounded(shipRect, 0.3f, 6, Color{200, 200, 200, 255});
-    DrawRectangleRoundedLines(shipRect, 0.3f, 6, Color{80, 80, 80, 255});
+    Rectangle src{0, 0, (float)sprite.width, (float)sprite.height};
+    Rectangle dst{pos.x - w * 0.5f, pos.y - h * 0.5f, w, h};
 
-    // --- Power core (actual hitbox) ---
-    // --- Power core glow layers ---
+    DrawTexturePro(sprite, src, dst, {0, 0}, 0.0f, tint);
+
+    // --- Power core glow ---
     float t = GetTime();
-
-    // Pulse between 1.0 and 1.25
     float pulse = 1.0f + 0.25f * sinf(t * 6.0f);
 
-    // Outer halo
-    DrawCircleV(pos, hitboxRadius * 4.0f * pulse,
-                Color{0, 150, 255, 40});
-
-    // Mid halo
-    DrawCircleV(pos, hitboxRadius * 2.5f * pulse,
-                Color{0, 150, 255, 90});
-
-    // Inner bright core (actual hitbox)
-    DrawCircleV(pos, hitboxRadius,
-                Color{0, 180, 255, 255});
-
+    DrawCircleV(pos, hitboxRadius * 1.2f * pulse, Color{0, 150, 255, 40});
+    DrawCircleV(pos, hitboxRadius * 1.0f * pulse, Color{0, 150, 255, 90});
+    DrawCircleV(pos, hitboxRadius * 0.6f, Color{0, 180, 255, 255});
 }
-
-
-
 
 Rectangle Player::hitbox() const {
     return { pos.x - hitboxRadius, pos.y - hitboxRadius,
              hitboxRadius * 2, hitboxRadius * 2 };
+}
+
+void Player::takeDamage(int amount) {
+    if (isInvulnerable()) return;
+
+    health -= amount;
+    if (health < 0) health = 0;
+
+    // Start invincibility frames
+    invulnTime = 1.2f;
 }

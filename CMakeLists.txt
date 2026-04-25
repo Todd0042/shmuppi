@@ -18,6 +18,10 @@ add_executable(shmuppi
     src/states/state_level_select.cpp
     src/states/state_play.cpp
     src/states/state_pause.cpp
+    src/entities/enemy_bullet.cpp
+    src/states/state_game_over.cpp
+
+
 )
 
 target_include_directories(shmuppi PRIVATE src)

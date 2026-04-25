@@ -4,10 +4,7 @@
 #include <iostream>
 
 Game::Game(const GameConfig& cfg) : config(cfg) {
-    SetConfigFlags(FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_MAXIMIZED);
     InitWindow(config.width, config.height, config.title.c_str());
-
-
     SetTargetFPS(60);
 }
 
@@ -35,12 +32,6 @@ void Game::run() {
             state->render(*this);
         }
 
-#ifdef SHMUP_DEBUG_WINDOW
-        if (config.debug_window) {
-            DrawText("DEBUG MODE", 10, 10, 20, RED);
-        }
-#endif
-
         EndDrawing();
     }
 }
@@ -56,6 +47,18 @@ void Game::popState() {
     if (!states.empty()) {
         states.back()->onExit(*this);
         states.pop_back();
+    }
+}
+
+void Game::changeState(std::unique_ptr<GameState> state) {
+    if (!states.empty()) {
+        states.back()->onExit(*this);
+        states.pop_back();
+    }
+
+    if (state) {
+        state->onEnter(*this);
+        states.emplace_back(std::move(state));
     }
 }
 
